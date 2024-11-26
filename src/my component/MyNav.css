@@ -1,0 +1,15 @@
+.container{
+    margin: 0;
+    
+
+}
+header > nav{
+    background-color: black;
+    color: aliceblue;
+}
+#collapsible-nav-dropdown{
+    color: aliceblue;
+}
+button{
+ color: aliceblue;
+}
