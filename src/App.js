@@ -1,38 +1,33 @@
+import "./App.css";
+import "bootstrap/dist/css/bootstrap.min.css";
+import MyNavbar from "./Component/MyNav";
+import { Container } from "react-bootstrap";
+import MyFooter from "./Component/MyFooter";
 
-import './App.css';
-import 'bootstrap/dist/css/bootstrap.min.css'
-import MyNavbar from './my component/MyNav';
-import { Container, Row,Col } from 'react-bootstrap';
-import MyFooter from './my component/MyFooter';
-import MyCard from './my component/MyCard';
-import MyAlert from './my component/MyAlert.jsx';
+import MyAlert from "./Component/MyAlert";
+import books from "./books/fantasy.json";
 
-
-
+import BookList from "./Component/BookList";
+import Search from "./Component/Search";
 
 function App() {
   return (
-    <div >
+    <div>
       <header>
-        <MyNavbar/>
+        <MyNavbar />
       </header>
-      
+      <MyAlert />
       <main>
-      <MyAlert/>
         <Container>
-          <Row >
-            <Col className='col-12 col-md-6 col-lg-12'>
-            
-            <MyCard />
-            </Col>
-          </Row>
+          <Search />
+          <h1>Lista Libri</h1>
+          <BookList books={books} />
         </Container>
       </main>
       <footer>
-        <MyFooter/>
+        <MyFooter />
       </footer>
     </div>
-   
   );
 }
 
