@@ -35,7 +35,7 @@ class SingleBook extends Component {
       rate:5,
       elementId: this.props.book.asin,
     }
-    fetch("https://striveschool-api.herokuapp.com/api/comments/", {
+    fetch(`https://striveschool-api.herokuapp.com/api/comments/${this.props.book.asin}`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -71,15 +71,17 @@ class SingleBook extends Component {
     return (
       
      
-      <Col xs={12} md={4} >
+      <Col  >
           <Card style={{ margin: '1em', border: this.state.selected?'3px solid blue' : ''}}>
           <Card.Img 
-          onClick={()=>
+          onClick={()=>{
             this.setState({
               selected:!this.state.selected,
+              
 
             })
-          }
+            this.props.onBook(this.props.book.asin)
+          }}
           variant="top" src={this.props.book.img} alt={this.props.book.title} style={{height:'100v', objectFit:"cover"}} />
           <Card.Body>
             <Card.Title >{this.props.book.title}</Card.Title>
@@ -87,33 +89,7 @@ class SingleBook extends Component {
              Price €{this.props.book.price}
             </Card.Text>
             <Button variant="primary">Add to Cart</Button>
-            {/*commentArea */}
-            {this.state.selected &&(
-             <Form>
-             <Form.Group className="mb-3" controlId="exampleForm.ControlTextarea1">
-               <Form.Label>{this.props.book.title}</Form.Label>
-               
-             </Form.Group>
-             <Form.Group className="mb-3" controlId="exampleForm.ControlTextarea1" >
-               <Form.Label>Lascia qui la tua Recensione</Form.Label>
-               <Form.Control  as="textarea" rows={10} placeholder='Recensione...' value={this.state.comment} onChange={(e)=>this.setState({comment:e.target.value})}  />
-             </Form.Group>
-             <Button
-                  variant="success"
-                  onClick={this.postComment}
-                  disabled={!this.state.comment.trim()}
-                >
-                  Invia Commento
-                </Button>
-             <ListGroup>
-              {this.state.sigleComment.map((res)=>{
-                ( <ListGroup.Item key={res.asin}>{res.comment}</ListGroup.Item>)
-              })}
-      
- 
-    </ListGroup>
-           </Form>
-            )}
+         
           </Card.Body>
         </Card>
         </Col>
